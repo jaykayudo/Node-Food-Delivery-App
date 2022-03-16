@@ -1,0 +1,77 @@
+<%- include('header') -%>
+<div>
+    <h3 class="heading-text">
+        Your Food Basket
+    </h3>
+    <%if(locals.food){%>
+        <div class="row" style="padding-bottom: 1rem;">
+            <div class="col-md-9">
+                    <% food.forEach(x=>{%>
+                        <div class="row cart-box">
+                        <div class="col-md-4 col-12 ">
+                            <img src="<%= x.image %>" alt="" class="img-thumbnail">
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <p><%= x.name %></p>
+                        </div>
+                        <div class="col-md-3 col-3">
+                            <p>N<%= x.price %></p>
+                        </div>
+                        <div class="col-md-2 col-3">
+                            <a href="/cart/<%= x.name %>/delete" class="model-btn btn-danger"><i class="fa fa-trash"></i></a>
+                        </div>
+                        </div>
+                    <% }) %>
+            </div>
+            <div class="col-md-3">
+                <div class="subtotalbox" style="margin: 0 1rem;">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                            <h4>Subtotal (<%= locals.food.length? food.length: 0 %>)</h4>
+                        </div>
+                        <% food.forEach(x=>{%>
+                            <div class="list-group-item">
+                                <div class="row">
+                                <div class="col-md-6" style="font-size: 0.85rem;">
+                                    <%= x.name %>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>N<%= x.price %></p>
+                                </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col-6" style="font-size: 0.85rem;">
+                                    Total
+                                </div>
+                                <div class="col-6">
+                                    N0.00
+                                </div>
+                            </div>
+                        </div>
+                        <% if(locals.request.user && locals.request.cart ){%>
+                            <% if(locals.request.cart.food.length > 0 ){%>
+                                <div class="list-group-item p-2" >
+                                    <a href="/order" class="button-block">Place Order</a>
+                                </div>
+                            <%}%>
+                        <%}else{%>
+                            <div class="list-group-item p-2">
+                                <a href="/login" class="button-block">Login</a>
+                            </div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <%}else{%>
+        <div class="center-div">
+            <p>
+                You have no Food in your Basket
+            </p>
+        </div>
+    <%}%>
+</div>
+<%- include('footer') -%>

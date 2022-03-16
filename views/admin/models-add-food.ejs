@@ -1,0 +1,112 @@
+<%- include('header') -%>
+<div class="center-div padding-top" style="padding-bottom: 20px;">
+    <div class="form-container admin-form-container">
+        <h1><%= locals.editdata? 'Edit':'Add' %> Food</h1>
+        <form action="" method="POST">
+            <span class="<%= locals.error? 'error-field-box':'' %>"><%= locals.error? error:'' %></span>
+                <div class="form-group">
+                    <input type="text" name="name" class="login-input-field" placeholder=" " value="<%= locals.editdata? editdata.name:'' %>" required>
+                    <label>Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="price" class="login-input-field" placeholder=" " value="<%= locals.editdata? editdata.price:'' %>" required>
+                    <label>Price</label>
+                </div>
+           
+                <div class="admin-form-group">
+                    <label>Description</label>
+                    <textarea name="description"  cols="100" rows="10" class="admin-description" required maxlength="500"><%= locals.editdata? editdata.description:'' %></textarea>
+                </div>
+            
+                <fieldset class="tags-box">
+                    <legend class="tags-title">Tags</legend>
+                    <label><input type="checkbox" class="remember" name="Food[]" value="Food" 
+                        <% if(locals.editdata){%>
+                            <% editdata.tags.forEach(tag=>{%>
+                                <% if(tag == "Food"){%>
+                                        checked
+                                <%}%>
+                             <%})%>
+                                
+                            <%}%>
+                            
+                        > Food</label>
+                    <label><input type="checkbox" class="remember" name="Food[]" value="Snack"
+                        <% if(locals.editdata){%>
+                            <% editdata.tags.forEach(tag=>{%>
+                                <% if(tag == "Snack"){%>
+                                        checked
+                                <%}%>
+                             <%})%>
+                                
+                            <%}%>
+                                                
+                        > Snacks</label>
+                    <label><input type="checkbox" class="remember" name="Food[]" value="Meat" 
+                        <% if(locals.editdata){%>
+                            <% editdata.tags.forEach(tag=>{%>
+                                <% if(tag == "Meat"){%>
+                                        checked
+                                <%}%>
+                             <%})%>
+                                
+                            <%}%>
+                            
+                        > Meat</label>
+                    <label><input type="checkbox" class="remember" name="Food[]" value="Vegetable"
+                        <% if(locals.editdata){%>
+                            <% editdata.tags.forEach(tag=>{%>
+                                <% if(tag == "Vegetable"){%>
+                                        checked
+                                <%}%>
+                             <%})%>
+                                
+                            <%}%>
+
+                        > Vegetable</label>
+                    <label><input type="checkbox" class="remember" name="Food[]" value="Drink"
+                        <% if(locals.editdata){%>
+                            <% editdata.tags.forEach(tag=>{%>
+                                <% if(tag == "Drink"){%>
+                                        checked
+                                <%}%>
+                             <%})%>
+                                
+                            <%}%>
+                            
+                            > Soft Drink</label>
+                    <label><input type="checkbox" class="remember" name="Food[]" value="Alcohol"
+                        <% if(locals.editdata){%>
+                            <% editdata.tags.forEach(tag=>{%>
+                                <% if(tag == "Alcohol"){%>
+                                        checked
+                                <%}%>
+                             <%})%>
+                                
+                            <%}%>
+                            
+                        > Alcohol</label>
+                </fieldset>
+           
+                <div class="admin-form-group">
+                    <label><input type="checkbox" name="instock" class="remember"
+                        <% if(locals.editdata){%>
+                        <% if(locals.editdata.in_stock){%>
+                            checked
+                        <%}%>
+                        <%}%>
+                        > In Stock</label>
+                </div>     
+                    
+            <div class="submit-button">
+                <input type="submit" name="submit" value="Save">
+            </div>
+            <% if(!locals.editdata){%>
+            <div class="submit-button" style="padding-top: 0;">
+                <input type="submit" name="submit" value="Save and Add Another" style="width: 200px">
+            </div>
+            <%}%>
+        </form>
+    </div>
+</div>
+<%- include('footer') -%>

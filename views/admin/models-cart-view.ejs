@@ -1,0 +1,19 @@
+<%- include('header') -%>
+<div class="padding-top">
+    <div class="container">
+        <h2 class="model-view-header">Details of Cart id - <%= data.id %></h2>
+        <div>
+            <ul>
+                <li><span>User: </span><%= data.user %></li>
+                <li><span>Status: </span><%= data.status %></li>
+            </ul>
+            <ul>
+                <% data.food.forEach(x=>{%>
+                    <li><%= x %></li>
+                <% })%>
+            </ul>
+        </div>
+    </div>
+    
+</div>
+<%- include('footer') -%>

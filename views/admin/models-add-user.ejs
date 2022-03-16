@@ -1,0 +1,42 @@
+<%- include('header') -%>
+<div class="center-div">
+    <div class="form-container">
+        <h1>Add User</h1>
+        <form action="" method="POST">
+            <span class="<%= locals.error? 'error-field-box':'' %>"><%= locals.error? error:'' %></span>
+            <div class="signup-form-group">
+                <div class="form-group">
+                    <input type="text" name="firstname" class="login-input-field" placeholder=" ">
+                    <label>FirstName</label>
+                </div>
+            </div>
+            <div class="signup-form-group">
+                <div class="form-group">
+                    <input type="text" name="lastname" class="login-input-field" placeholder=" " >
+                    <label>LastName</label>
+                </div>
+            </div>
+            <div class="signup-form-group">
+                <div class="form-group">
+                    <input type="text" name="username" required class="login-input-field" placeholder=" " >
+                    <label>Username<span class="require">*</span></label>
+                </div>
+                
+            </div>
+            <div class="signup-form-group">
+                <div class="form-group">
+                    <input type="password" name="password" required class="login-input-field" placeholder=" ">
+                    <label>Password<span class="require">*</span></label>
+                </div>
+                
+            </div>
+            <div class="submit-button">
+                <input type="submit" name="submit" value="Save">
+            </div>
+            <div class="submit-button" style="padding-top: 0;">
+                <input type="submit" name="submit" value="Save and Add Another" style="width: 200px">
+            </div>
+        </form>
+    </div>
+</div>
+<%- include('footer') -%>

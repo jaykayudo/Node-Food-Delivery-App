@@ -1,0 +1,41 @@
+<%- include('header') -%>
+<div class="center-div" style="flex-direction: column;">
+    <h2 class="text-center">Order Summary</h2>
+    <div class="list-group list-group-flush middle-width">
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Food</h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>Price</h4>
+                </div>
+            </div>
+        </div>
+        <% food.forEach(x=>{%>
+            <div class="list-group-item">
+                <div class="row">
+                <div class="col-md-6" style="font-size: 0.85rem;">
+                    <%= x.name %>
+                </div>
+                <div class="col-md-6">
+                    <p>N<%= x.price %></p>
+                </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+    <div class="form-container" style="margin-bottom: 1rem;">
+        <h1 style="font-size: 1.5rem;">Enter Address</h1>
+        <form action="" method="POST">
+            <div class="form-group">
+                <input type="text" class="login-input-field" name="address" placeholder=" ">
+                <label>Address</label>
+            </div>
+            <div class="submit-button">
+                <input type="submit" value="Order" class="model-btn btn-success">
+            </div>
+        </form>
+    </div>
+</div>
+<%- include('footer') -%>

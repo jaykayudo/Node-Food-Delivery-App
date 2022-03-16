@@ -1,0 +1,56 @@
+<%- include('header') -%>
+<div class="padding-top">
+    <div class="table-box">
+        <% if(locals.models){%>
+            <h2>All User Models</h2>
+            <div class="sub-model-text"><%= models.length %> <%= models.length>1? "Users":"User" %></div>
+            <div class="sub-model-text"><a href="user/add" class="model-btn btn-success"><i class="fa fa-plus"></i> Add User</a></div>
+            <table class="table">
+                <tr>
+                    <td>Username</td>
+                    <td>FirstName</td>
+                    <td>LastName</td>
+                    <td>Active</td>
+                    <td>Staff</td>
+                    <td>Admin</td>
+                    <td colspan="4">Actions</td>
+                </tr>
+                <% models.forEach(x=>{ %>
+                    <tr>
+                        <td><%= x.username %></td>
+                        <td><%= x.firstname? x.firstname:"None" %></td>
+                        <td><%= x.lastname? x.lastname:"None" %></td>
+                        <td>
+                            <i class="fa <%= x.active? "fa-check-circle-o":"fa-times-circle-o" %> model-icon"</i>
+                        
+                        </td>
+                        <td><i class="fa <%= x.staff? "fa-check-circle-o":"fa-times-circle-o" %> model-icon"</i></td>
+                        <td><i class="fa <%= x.admin? "fa-check-circle-o":"fa-times-circle-o" %> model-icon"</i></td>
+                        <% if(x.staff){%>
+                            <td><a href="user/<%= x._id%>/remove-staff" class="model-btn btn-danger">Remove Staff</a></td>
+                        <%}else{%>
+                                <td><a href="user/<%= x._id%>/make-staff" class="model-btn btn-success">Make Staff</a></td>
+                        <% }%>
+                        <% if(x.active){%>
+                        <td><a href="user/<%= x._id%>/block" class="model-btn btn-danger">Block</a></td>
+                        <%}else{%>
+                            <td><a href="user/<%= x._id%>/activate" class="model-btn btn-success">Activate</a></td>
+                        <% }%>
+                        <% if(x.admin){%>
+                            <td><a href="user/<%= x._id%>/remove-admin" class="model-btn btn-danger">Remove Admin</a></td>
+                        <%}else{%>
+                                <td><a href="user/<%= x._id%>/make-admin" class="model-btn btn-success">Make Admin</a></td>
+                        <% }%>
+                        <td><a href="user/<%= x._id%>/delete" class="model-btn btn-danger" data-title="Delete User"><i class="fa fa-trash"></i></a></td>
+                       
+                    </tr>
+            <% } )%>
+            </table>
+        <%}else{%>
+            <div class="flex">
+                <p>No User Models Yet</p>
+            </div>
+        <%}%>
+    </div>
+</div>
+<%- include('footer') -%>

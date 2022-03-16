@@ -1,0 +1,35 @@
+<%- include('header') -%>
+<div class="padding-top">
+    <div class="table-box">
+        <% if(locals.models){%>
+            <h2>All Cart Models</h2>
+            <div class="sub-model-text"><%= models.length %> <%= models.length>1? "Carts":"Cart" %></div>
+            <div class="sub-model-text"><a href="cart/add" class="model-btn btn-success"><i class="fa fa-plus"></i> Add Cart</a></div>
+            <table class="table">
+                <tr>
+                    <td>User</td>
+                    <td>Status</td>
+                    <td>Created</td>
+                    <td colspan="3">Actions</td>
+                </tr>
+                <% models.forEach(x=>{ %>
+                    <tr>
+                        <td><%= x.user %></td>
+                        <td><%= x.status %></td>
+                        <td><%= x.createdAt %></td>
+                        <td>
+                            <a href="cart/<%= x._id %>/view" class="model-btn btn-info"><i class="fa fa-eye"></i></a>
+                        </td>
+                        <td><a href="cart/<%= x._id %>/edit" class="model-btn btn-info"><i class="fa fa-pencil"></i></a></td>
+                        <td><a href="cart/<%= x._id %>/delete" class="model-btn btn-danger"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+            <% } )%>
+            </table>
+        <%}else{%>
+            <div class="flex">
+                <p>No User Models Yet</p>
+            </div>
+        <%}%>
+    </div>
+</div>
+<%- include('footer') -%>

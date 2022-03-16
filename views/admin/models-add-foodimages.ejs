@@ -1,0 +1,44 @@
+<%- include('header') -%>
+<div class="center-div">
+    <div class="form-container">
+        <h1>Add Food Image</h1>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <span class="<%= locals.error? 'error-field-box':'' %>"><%= locals.error? error:'' %></span>
+            
+                <div class="admin-form-group">
+                    <label>Food</label>
+                    <select name="food" class="admin-input-select" required>
+                        <option value="">--Choose Food --</option>   
+                        <% if(locals.food){%>
+                            <% food.forEach(x=>{%>
+                            <option value="<%= x %>"
+                                <% if(locals.editdata ){%>
+                                    <% if(locals.editdata.food == x ){%>
+                                        selected
+                                    <%}%>
+                                <%}%>
+                                ><%= x %></option>
+                            <%})%>
+                        <%}%>
+                    </select>
+                </div>
+                <div class="admin-form-group">
+                    <label>Image</label>
+                    <% if(locals.editdata ){%>
+                        <br><span class="text-small">Currently:<%= editdata.path %></span>
+                    <%}%>
+                    <input type="file" name="path" accept="image/*" class="file" required>
+                </div>
+            <div class="submit-button">
+                <input type="submit" name="submit" value="Save">
+            </div>
+            <% if(!locals.editdata ){%>
+                <div class="submit-button" style="padding-top: 0;">
+                    <input type="submit" name="submit" value="Save and Add Another" style="width: 200px">
+                </div>
+                <%}%>
+            
+        </form>
+    </div>
+</div>
+<%- include('footer') -%>

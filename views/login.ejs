@@ -1,0 +1,37 @@
+<%- include('header') -%>
+<div class="center-div">
+    <div class="form-container">
+        <h1>Customer Login</h1>
+        <form action="" method="post">
+            <% if(error){%>
+             <span class="error-field-box"><%= error %></span>
+            <% }else{%>
+            <% }%>
+            <div class="form-group">
+                <input type="text" class="login-input-field" placeholder=" " name="username" required>
+                <label>
+                    Username
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="login-input-field" placeholder=" " required> 
+                <label>
+                    Password
+                </label>
+            </div>
+            
+                <label> <input type="checkbox" name="remember" class="remember"> <span class="remember-label">Remember Me</span></label>
+            <div class="submit-button">
+                <input type="submit" value="Login">
+            </div>
+            <div class="login-questions">
+                <p>Dont't have an Account? <a href="/signup">Signup</a></p>
+                <p>Forgot Password? <a href="#">Click Here</a></p>
+            </div>
+        </form>
+    </div>
+    
+</div>
+<%- include('footer') -%>
+            
+     

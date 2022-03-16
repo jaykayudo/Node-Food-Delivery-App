@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/admin/style.css">
+    <title><%= locals.title? title: "Mama Put  Admin " %></title>
+</head>
+<body class="glass-background">
+    <div class="glass">
+    <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" class="toggle-button close" id="closeButton"><i class="fa fa-times"></i></a>
+        <div class="photo-case">
+            <img src="/images/profile-pic.png" alt="" class="img-thumbnail">
+            <h4>Admin</h4>
+        </div>
+        <ul class="navigation">
+            <li class="navigation-item"><a href="/" class="navigation-link"><span class="icon"><i class="fa fa-home"></i></span><span class="title">View Site</span></a></li>
+            <li class="navigation-item"><a href="/admin/models" class="navigation-link"><span class="icon"><i class="fa fa-database"></i></span><span class="title">Models</span></a></a></li>
+            <li class="navigation-item"><a href="#" class="navigation-link"><span class="icon"><i class="fa fa-bell-o"></i></span><span class="title">Notifications</span></a></a></li>
+            <li class="navigation-item"><a href="#" class="navigation-link"><span class="icon"><i class="fa fa-cog"></i></span><span class="title">Settings</span></a></a></li>
+            <li class="navigation-item hidden-nav"><a href="#" class="navigation-link"><span class="icon"><i class="fa fa-search"></i></span><span class="title">Search</span></a></a></li>
+            <% if(locals.user){%>
+                <li class="navigation-item hidden-nav"><a href="/logout" class="navigation-link"><span class="icon"><i class="fa fa-sign-out"></i></span><span class="title">Logout</span></a></a></li>
+            <%}else{%>
+                <li class="navigation-item hidden-nav"><a href="/login" class="navigation-link"><span class="icon"><i class="fa fa-sign-in"></i></span><span class="title">Login</span></a></a></li>
+            <%}%>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="main">
+            <div class="head-nav">
+                <div class="left-nav">
+                    <h1>Mama Put Admin</h1>
+                </div>
+                <div class="collapse-right-nav"><ul>
+                    <li><a href="#" data-title="Search"><span class="icon"><i class="fa fa-search"></i></span></a></li>
+                    <li><a href="#" data-title="Cart"><span class="icon"><i class="fa fa-shopping-cart"></i></span></a></li>
+                    <% if(locals.user){%>
+                    <li><a href="/logout" data-title="Logout"><span class="icon"><i class="fa fa-sign-out"></i></span></a></li>
+                    <%}else{%>
+                        <li><a href="/login" data-title="Login"><span class="icon"><i class="fa fa-sign-in"></i></span></a></li>
+                    <%}%>
+                    <li><a href="javascript:void(0)" id="openButton"><span class="icon hidden"><i class="fa fa-bars"></i></span></a></li>
+                </ul></div>
+            </div>

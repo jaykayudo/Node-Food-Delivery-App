@@ -1,0 +1,42 @@
+<%- include('header') -%>
+<div class="padding-top">
+    <div class="table-box">
+        <% if(models){%>
+            <h2>All Food Models</h2>
+            <div class="sub-model-text"><%= models.length %> <%= models.length>1? "Food":"Food" %></div>
+            <div class="sub-model-text"><a href="food/add" class="model-btn btn-success"><i class="fa fa-plus"></i> Add Food</a></div>
+            <table class="table">
+                <tr>
+                    <td>Name</td>
+                    <td>Description</td>
+                    <td>Price</td>
+                    <td>Tags</td>
+                    <td>In Stock</td>
+                    <td colspan="2">Actions</td>
+                </tr>
+                <% models.forEach(x=>{ %>
+                    <tr>
+                        <td><%= x.name %></td>
+                        <td><%= x.description? x.description.slice(0,30)+"...":"None" %></td>
+                        <td><%= x.price %></td>
+                        <td>
+                        <% x.tags.forEach(t=>{%>
+                            <%= t+"," %>
+                        <%})%>
+                        </td>
+                        <td>
+                            <i class="fa <%= x.in_stock? "fa-check-circle-o":"fa-times-circle-o" %> model-icon"</i>
+                        </td>
+                        <td><a href="food/<%= x._id%>/edit" class="model-btn btn-info"><i class="fa fa-pencil"></i></a></td>
+                        <td><a href="food/<%= x._id%>/delete" class="model-btn btn-danger"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+            <% } )%>
+            </table>
+        <%}else{%>
+            <div class="flex">
+                <p>No User Models Yet</p>
+            </div>
+        <%}%>
+    </div>
+</div>
+<%- include('footer') -%>

@@ -1,0 +1,81 @@
+<%- include('header') -%>
+<div class="padding-top">
+<div class="center-div">
+    
+    <div class="form-container">
+        <h1><%= locals.editdata? "Edit Cart":"Add Cart" %></h1>
+        <form action="" method="POST">
+            <span class="<%= locals.error? 'error-field-box':'' %>"><%= locals.error? error:'' %></span>
+            <div class="admin-form-group">
+                <label>User</label>
+                <select name="user" class="admin-input-select" required autocomplete="on">
+                    <option value="<%= locals.editdata? locals.editdata.user:'' %>"><%= locals.editdata? locals.editdata.user:'--Choose User--' %></option>   
+                    <% if(locals.cartuser){%>
+                        <% cartuser.forEach(x=>{%>
+                        <option value="<%= x %>"
+                           <% if(locals.editdata ){%>
+                            <% if(locals.editdata.user == x ){%>
+                           selected
+                           <%}%>
+                           <%}%> 
+                            ><%= x %></option>
+                        
+                        <%})%>
+                    <%}%>
+                </select>
+                </div>
+                <div class="admin-form-group">
+                    <label>Foods</label>
+                    <select name="food" class="admin-input-select" required multiple autocomplete="on">  
+                        <% if(locals.food){%>
+                            <% food.forEach(x=>{%>
+                                
+                                    
+                                    <option value="<%= x %>"
+                                        <% if(locals.editdata){%>
+                                            <% editdata.food.forEach(y=>{ %>
+                                                <% if (y == x){%>
+                                                    selected
+                                                <%}%>
+                                            <%})%>
+                                            <% }%>
+                                        ><%= x %></option>
+                                <%})%>
+                            
+                            
+                        <%}%>
+                    </select>
+                </div>
+                <div class="admin-form-group">
+                    <label>Status</label>
+                    <select name="status" class="admin-input-select">
+                        <option value="OPEN"
+                        <% if(locals.editdata){%>
+                            <% if(locals.editdata.status == "OPEN"){%>
+                            selected
+                            <%}%>
+                        <%}%>
+                        >OPEN</option>
+                        <option value="CLOSED" 
+                        <% if(locals.editdata){%>
+                            <% if(locals.editdata.status == "CLOSED"){%>
+                            selected
+                            <%}%>
+                        <%}%>
+                        >CLOSED</option>
+                        
+                    </select>
+                </div>
+            <div class="submit-button">
+                <input type="submit" name="submit" value="Save">
+            </div>
+            <% if(!locals.editdata){%>
+            <div class="submit-button" style="padding-top: 0;">
+                <input type="submit" name="submit" value="Save and Add Another" style="width: 200px">
+            </div>
+            <%}%>
+        </form>
+    </div>
+</div>
+</div>
+<%- include('footer') -%>

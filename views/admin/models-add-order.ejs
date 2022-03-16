@@ -1,0 +1,86 @@
+<%- include('header') -%>
+<div class="padding-top">
+<div class="center-div">
+    
+    <div class="form-container">
+        <h1><%= locals.editdata? "Edit Order":"Add Order" %></h1>
+        <form action="" method="POST">
+            <span class="<%= locals.error? 'error-field-box':'' %>"><%= locals.error? error:'' %></span>
+            <div class="admin-form-group">
+                <label>User</label>
+                <select name="user" class="admin-input-select" required>
+                    <option value="">--Choose User --</option>   
+                    <% if(locals.orderuser){%>
+                        <% orderuser.forEach(x=>{%>
+                        <option value="<%= x %>"
+                            <% if(locals.editdata ){%>
+                            <% if(locals.editdata.user == x ){%>
+                                selected
+                                <%}%>
+                                <%}%>
+                            ><%= x %></option>
+                        <%})%>
+                    <%}%>
+                </select>
+                </div>
+                <div class="admin-form-group">
+                    <label>Foods</label>
+                    <select name="food" class="admin-input-select" required multiple>  
+                        <% if(locals.food){%>
+                            <% food.forEach(x=>{%>
+                            <option value="<%= x %>"
+                                <% if(locals.editdata){%>
+                                    <% editdata.food.forEach(y=>{ %>
+                                        <% if (y == x){%>
+                                            selected
+                                        <%}%>
+                                    <%})%>
+                                    <% }%>
+                                ><%= x %></option>
+                            <%})%>
+                        <%}%>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="address" class="login-input-field" placeholder=" " value="<%= locals.editdata? editdata.address:"" %>" required>
+                    <label> Address</label>
+                </div>
+                <div class="admin-form-group">
+                    <label>Status</label>
+                    <select name="status" class="admin-input-select">
+                        <option value="NEW" 
+                        <% if(locals.editdata){%>
+                            <% if(locals.editdata.status == "NEW"){%>
+                            selected
+                            <%}%>
+                        <%}%>
+                        >NEW</option>
+                        <option value="PAID"
+                        <% if(locals.editdata){%>
+                            <% if(locals.editdata.status == "PAID"){%>
+                            selected
+                            <%}%>
+                        <%}%>
+                        >PAID</option>
+                        <option value="DELIVERED"
+                        <% if(locals.editdata){%>
+                            <% if(locals.editdata.status == "DELIVERED"){%>
+                            selected
+                            <%}%>
+                        <%}%>
+                        >DELIVERED</option>
+                    </select>
+                </div>
+            <div class="submit-button">
+                <input type="submit" name="submit" value="Save">
+            </div>
+            <% if(!locals.editdata){%>
+            <div class="submit-button" style="padding-top: 0;">
+                <input type="submit" name="submit" value="Save and Add Another" style="width: 200px">
+            </div>
+            <%}%>
+        </form>
+    </div>
+</div>
+</div>
+<%- include('footer') -%>

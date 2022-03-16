@@ -1,0 +1,91 @@
+<%- include('header') -%>
+<div class="container padding-top">
+    <div class="row"><div class="col-md-9">
+    <div class="tags">
+        <div class="row">
+            <div class="col-md-2 col-4">
+                <div class="menu-tag">
+                    <a href="#">
+                        <img src="" alt="">
+                        <p>All</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="menu-tag">
+                    <a href="">
+                        <img src="" alt="">
+                        <p>Foods</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                    <div class="menu-tag">
+                        <a href="">
+                            <img src="" alt="">
+                            <p>Snacks</p>
+                        </a>
+                    </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="menu-tag">
+                    <a href="">
+                        <img src="" alt="">
+                        <p>Meat</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="menu-tag">
+                    <a href="">
+                        <img src="" alt="">
+                        <p>Drinks</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="menu-tag">
+                    <a href="">
+                        <img src="" alt="">
+                        <p>Alcohol</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <% data.forEach(x=>{%>
+        <div class="col-md-3">
+            <div class="menu-box">
+                <img src="#" alt="">
+                <p class="name"><%= x.name %></p>
+                <p><%= x.description %></p>
+                <div class="right-align menu-link">
+                    <% if(locals.request.cart){%>
+                    <% if(locals.request.cart.food && locals.request.cart.food.length > 0){%>
+                        
+                        <% for(var y = 0; y < locals.request.cart.food.length; y++){%>
+                            <% if(locals.request.cart.food[y] == x.name ){%>
+                                <%= x.price%>  <a href="javascript::void(0)" id="<%= x.name %>" class="button" ><i class="fa fa-check"></i></a>
+                                <% break %>
+                            <% }%>
+                            <% if(x.name != locals.request.cart.food[locals.request.cart.food.length - 1] && y == locals.request.cart.food.length - 1 ){%>
+                                <%= x.price%>  <a href="javascript::void(0)" id="<%= x.name %>" class="button" onclick="addToCart(event,'<%= x.name %>')"><i class="fa fa-plus"></i></a>
+                            <% }%>
+                         
+                    <% }%>
+                    <% }else{%>
+                        <%= x.price%>  <a href="javascript::void(0)" id="<%= x.name %>" class="button" onclick="addToCart(event,'<%= x.name %>')"><i class="fa fa-plus"></i></a>
+                    <% }%>
+                    <% }else{%>
+                        <%= x.price%>  <a href="javascript::void(0)" id="<%= x.name %>" class="button" onclick="addToCart(event,'<%= x.name %>')"><i class="fa fa-plus"></i></a>
+                    <% }%>
+                </div>
+            </div>
+        </div>
+        <%})%>
+    </div>
+</div>
+</div>
+</div>
+<%- include('footer') -%>

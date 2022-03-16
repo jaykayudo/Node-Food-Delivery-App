@@ -1,0 +1,42 @@
+<%- include('header') -%>
+<div class="center-div">
+    <div class="form-container">
+        <h1>Customer Signup</h1>
+        <form action="" method="POST">
+            <span class="<%= locals.error? 'error-field-box':'' %>"><%= locals.error? error:'' %></span>
+            <div class="signup-form-group">
+                <div class="form-group">
+                    <input type="text" name="firstname" class="login-input-field" placeholder=" ">
+                    <label>FirstName</label>
+                </div>
+            </div>
+            <div class="signup-form-group">
+                <div class="form-group">
+                    <input type="text" name="lastname" class="login-input-field" placeholder=" " >
+                    <label>LastName</label>
+                </div>
+            </div>
+            <div class="signup-form-group">
+                <div class="form-group">
+                    <input type="text" name="username" required class="login-input-field" placeholder=" " >
+                    <label>Username<span class="require">*</span></label>
+                </div>
+                
+            </div>
+            <div class="signup-form-group">
+                <div class="form-group">
+                    <input type="password" name="password" required class="login-input-field" placeholder=" ">
+                    <label>Password<span class="require">*</span></label>
+                </div>
+                
+            </div>
+            <div class="submit-button">
+                <input type="submit" value="Signup">
+            </div>
+            <div class="login-questions">
+                <p>Already Have an Account? <a href="/login">Login</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include('footer') -%>

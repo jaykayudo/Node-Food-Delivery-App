@@ -1,0 +1,18 @@
+<%- include('header') -%>
+<div class="center-div">
+    <div class="model-box">
+        <% if(locals.models){%>
+            <h2>All Models</h2>
+        <ul>
+            <% models.forEach(x=>{ %>
+                    <li><a href="/admin/models/<%= x.toLowerCase()%>"><%= x %></a></li>
+            <% } )%>
+        </ul>
+        <%}else{%>
+            <div class="flex">
+                <p>No Models Yet</p>
+            </div>
+        <%}%>
+    </div>
+</div>
+<%- include('footer') -%>
